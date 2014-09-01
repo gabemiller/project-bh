@@ -34,7 +34,7 @@ class Page extends \Eloquent {
 
         $array = array(0 => 'Nincs');
 
-        foreach (Page::where('id', '<>', $id)->get(['id','menu']) as $page) {
+        foreach (Page::where('id', '<>', $id)->get(['id', 'menu']) as $page) {
             $array[$page->id] = $page->menu;
         }
 
@@ -47,7 +47,7 @@ class Page extends \Eloquent {
      * @param type $id
      */
     public static function getPagesForMenu($menu, $id) {
-        $pages = Page::where('parent', '=', $id)->get(['id','menu','parent','title']);
+        $pages = Page::where('parent', '=', $id)->get(['id', 'menu', 'parent', 'title']);
 
         if ($id == 0) {
             foreach ($pages as $page) {

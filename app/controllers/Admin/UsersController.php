@@ -46,8 +46,8 @@ class UsersController extends \BaseController {
         try {
 
             $rules = array(
-                'first_name' => 'required|alpha_num',
-                'last_name' => 'required|alpha_num',
+                'first_name' => 'required',
+                'last_name' => 'required',
                 'email' => 'required|email|unique:users',
                 'phone' => 'numeric|digits_between:9,20'
             );
