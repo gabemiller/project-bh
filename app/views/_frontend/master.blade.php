@@ -3,14 +3,14 @@
     <head prefix="og: http://ogp.me/ns#">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-		
-		
-		<meta property="og:image" content="http://banhorvati.hu/assets/Banhorvati_mini.png">
-		<meta property="og:image:type" content="image/png">
-		<meta property="og:image:width" content="200">
-		<meta property="og:image:height" content="211">
-		
-		
+
+
+        <meta property="og:image" content="http://banhorvati.hu/assets/Banhorvati_mini.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="200">
+        <meta property="og:image:height" content="211">
+
+
         <link href="/assets/favicon.ico" rel="icon" type="image/x-icon" />
         <title>{{Config::get('globals.title');}} - {{$title or ''}}</title>
 
@@ -28,6 +28,7 @@
 
     </head>
     <body>
+        <div id="fb-root"></div>
 
         @include('_frontend.lightbox')
         @include('_frontend.header')
@@ -56,11 +57,11 @@
         </div>
         @include('_frontend.footer')
 
-        <div id="fb-root"></div>
+
         <script>
             window.fbAsyncInit = function() {
                 FB.init({
-                    appId: '324015767774219',
+                    appId: '567582800013985',
                     xfbml: true,
                     version: 'v2.0'
                 });

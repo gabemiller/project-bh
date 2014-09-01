@@ -2,7 +2,7 @@
     <div class="container">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="logo animated bounceInDown">
-                {{HTML::decode(HTML::linkRoute('fooldal','<h1>Bánhorváti.hu</h1>',array(),array('class'=>'logo-link')))}}
+                {{HTML::decode(HTML::linkRoute('fooldal','<h1>Nagybarca.hu</h1>',array(),array('class'=>'logo-link')))}}
             </div>
         </div>
     </div>
@@ -10,7 +10,7 @@
     <div class="container header-bottom">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h2 class="welcome animated bounceInRight">Köszöntjük Bánhorváti község weboldalán!</h2>
+                <h2 class="welcome animated bounceInRight">Köszöntjük Nagybarca község weboldalán!</h2>
             </div>
         </div> 
 
