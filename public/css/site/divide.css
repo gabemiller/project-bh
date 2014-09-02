@@ -67,7 +67,7 @@ footer a:active{
 
 footer .footer-bottom{
     /*background-color: #006d33;*/
-    background-color: #016E32;
+    background-color: #005C9F;
     width: 100%;
     min-height: 40px;
     /*color: #33A066;*/
@@ -361,11 +361,11 @@ fieldset[disabled] .btn-tardona-yellow.active {
 }
 
 .label-banhorvati-blue{
-    background-color: #016E32;
+    background-color: #005C9F;
 }
 
 .label-banhorvati-blue:hover{
-    background-color: #1B884C;
+    background-color: #1A76B9;
 }
 
 
@@ -456,6 +456,8 @@ fieldset[disabled] .btn-tardona-yellow.active {
 #fb-root {
     display: none;
 }
+
+.FB_UI_Hidden { width: 100px !important; }
 
 .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
     width: 100% !important;
