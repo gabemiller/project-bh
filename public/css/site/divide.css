@@ -33,13 +33,12 @@ footer {
     bottom: 0;
     width: 100%;
     margin-top:40px;
-    background-color:#d6d6d6;
+    background-color:#e5e5e5;
 }
 
 footer h3{
     text-transform: uppercase;
     margin-top: 10px;
-    border-bottom: 2px dotted #646464;
 }
 
 footer dl dt{
