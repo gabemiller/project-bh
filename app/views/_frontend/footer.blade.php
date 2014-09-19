@@ -15,7 +15,7 @@
                     <dd>{{HTML::mailto('info@banhorvati.hu')}}</dd>
                 </dl>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 hidden-xs hidden-sm">
                 <h3>Legfrissebb hírek</h3>
 
                 @foreach($articleFooter as $article)
@@ -25,7 +25,7 @@
                 </div>
                 @endforeach
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 hidden-xs hidden-sm">
                 <h3>Kövessen minket!</h3> 
                 <div class="fb-like-box" data-href="https://www.facebook.com/pages/B%C3%A1nhorv%C3%A1ti/106226399408240?fref=ts" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
             </div>
