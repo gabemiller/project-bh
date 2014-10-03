@@ -33,10 +33,13 @@ class DocumentCategory extends \Eloquent {
      * @param type $id
      * @return type
      */
-    public static function getCategories($id = 0) {
+    public static function getCategories($id = 0, $default = false) {
 
-        $array = array();
-
+        if($default) {
+            $array = array(0 => 'Nincs');
+        } else{
+            $array = array();
+        }
         foreach (DocumentCategory::where('id', '<>', $id)->get(['id', 'name']) as $docCategory) {
             $array[$docCategory->id] = $docCategory->name;
         }

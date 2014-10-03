@@ -25,7 +25,7 @@ class DocumentCategoryController extends \BaseController {
     public function create() {
         View::share('title', 'Dokumentum kategóriák');
 
-        $this->layout->content = View::make('admin.documentcategory.create')->with('docCategories', DocumentCategory::all())->with('categories', DocumentCategory::getCategories());
+        $this->layout->content = View::make('admin.documentcategory.create')->with('docCategories', DocumentCategory::all())->with('categories', DocumentCategory::getCategories(0,true));
     }
 
     /**
