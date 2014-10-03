@@ -24,9 +24,10 @@ $app = new Illuminate\Foundation\Application;
   |
  */
 
-$env = $app->detectEnvironment(function() {
-    return $_ENV['LARAVELENV'] ? : 'developement';
-});
+$env = $app->detectEnvironment(array(
+    'production' => array('divide-server'),
+    'developement' => array('Paralelo','.dev','localhost','.local'),
+));
 
 /*
   |--------------------------------------------------------------------------
