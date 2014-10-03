@@ -3,6 +3,7 @@
 namespace Admin;
 
 use Divide\CMS\Document;
+use Divide\CMS\DocumentCategory;
 use View;
 use Validator;
 use Input;
@@ -37,7 +38,7 @@ class DocumentController extends \BaseController {
     public function create() {
         View::share('title', 'Új dokumentum');
 
-        $this->layout->content = View::make('admin.document.create');
+        $this->layout->content = View::make('admin.document.create')->with('categories',DocumentCategory::getCategories());
     }
 
     /**
@@ -80,6 +81,7 @@ class DocumentController extends \BaseController {
             $doc->path = $path . '/' . $fileName;
 
             if ($doc->save()) {
+                $doc->categories()->sync(Input::get('category'));
                 return Redirect::back()->with('message', 'A dokumentum feltöltése sikerült!');
             } else {
                 return Redirect::back()->withInput()->withErrors('A dokumentum feltöltése nem sikerült!');
@@ -116,11 +118,11 @@ class DocumentController extends \BaseController {
      * @return Response
      */
     public function edit($id) {
-        $doc = Document::find($id);
 
+        $doc = Document::find($id);
         View::share('title', 'Dokumentum szerkesztése: ' . $doc->name);
 
-        $this->layout->content = View::make('admin.document.edit')->with('document', $doc);
+        $this->layout->content = View::make('admin.document.edit')->with('document', $doc)->with('catIds',$doc->getCategoryIds())->with('categories',DocumentCategory::getCategories());
     }
 
     /**
@@ -147,6 +149,8 @@ class DocumentController extends \BaseController {
 
             $doc->name = Input::get('name');
             $doc->description = Input::get('description');
+
+
 
             if (Input::hasFile('file')) {
 
@@ -182,6 +186,7 @@ class DocumentController extends \BaseController {
             }
 
             if ($doc->save()) {
+                $doc->categories()->sync(Input::get('category'));
                 return Redirect::back()->with('message', 'A dokumentum feltöltése sikerült!');
             } else {
                 return Redirect::back()->withInput()->withErrors('A dokumentum feltöltése nem sikerült!');

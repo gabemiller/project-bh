@@ -4,14 +4,14 @@
  * -----------------------------------------------------------------------------
  * HTML macros
  * -----------------------------------------------------------------------------
- * 
- * Saját html függvények definiálása. 
- * 
+ *
+ * Saját html függvények definiálása.
+ *
  */
 /**
  * Létrehoz egy olyan listabeli elemet, ami aktív menüpontként viselkedik.
  */
-HTML::macro('activeMenu', function($link, $route, $more = FALSE, $classes = NULL) {
+HTML::macro('activeMenu', function ($link, $route, $more = FALSE, $classes = NULL) {
 
     $listElement = '<li';
 
@@ -45,7 +45,7 @@ HTML::macro('activeMenu', function($link, $route, $more = FALSE, $classes = NULL
 /**
  * Létrehoz egy olyan leugró listaelemet, ami aktív menüpontként viselkedik.
  */
-HTML::macro('activeMenuDropOpen', function($link, $route, $more = TRUE, $classes = NULL) {
+HTML::macro('activeMenuDropOpen', function ($link, $route, $more = TRUE, $classes = NULL) {
 
     $listElement = '<li';
 
@@ -78,7 +78,7 @@ HTML::macro('activeMenuDropOpen', function($link, $route, $more = TRUE, $classes
 /**
  * Lezárja a leugró listaelemet.
  */
-HTML::macro('activeMenuDropClose', function() {
+HTML::macro('activeMenuDropClose', function () {
 
     return '</li>';
 });
@@ -86,7 +86,7 @@ HTML::macro('activeMenuDropClose', function() {
 /**
  * A leugró listába létrehoz egy olyan listaelemet, aktív menüként viselkedik.
  */
-HTML::macro('activeSubMenuDropOpen', function($route, $classes = NULL) {
+HTML::macro('activeSubMenuDropOpen', function ($route, $classes = NULL) {
 
     $listElement = '<ul';
 
@@ -108,22 +108,21 @@ HTML::macro('activeSubMenuDropOpen', function($route, $classes = NULL) {
     return HTML::decode($listElement);
 });
 
-HTML::macro('activeSubMenuDropClose', function() {
+HTML::macro('activeSubMenuDropClose', function () {
 
     return '</ul>';
 });
-
 
 
 /**
  * -----------------------------------------------------------------------------
  * Form macros
  * -----------------------------------------------------------------------------
- * 
- * Saját form függvények definiálása. 
- * 
+ *
+ * Saját form függvények definiálása.
+ *
  */
-Form::macro('selection', function($name, $options, $attr = NULL, $selected = NULL) {
+Form::macro('selection', function ($name, $options, $attr = NULL, $selected = NULL) {
 
     $select = '<select ';
 
@@ -140,9 +139,16 @@ Form::macro('selection', function($name, $options, $attr = NULL, $selected = NUL
     foreach ($options as $key => $value) {
         $select .= '<option';
 
-        if ($key == $selected) {
-            $select .= ' selected="selected" ';
+        if (is_array($selected)) {
+            if (in_array($key, $selected)) {
+                $select .= ' selected="selected" ';
+            }
+        } else if(is_int($selected)) {
+            if ($key == $selected) {
+                $select .= ' selected="selected" ';
+            }
         }
+
 
         if (!empty($key)) {
             $select .= ' value="' . $key . '" ';
@@ -161,7 +167,7 @@ Form::macro('selection', function($name, $options, $attr = NULL, $selected = NUL
  * -----------------------------------------------------------------------------
  * Blade macros
  * -----------------------------------------------------------------------------
- * 
- * Saját blade függvények definiálása. 
- * 
+ *
+ * Saját blade függvények definiálása.
+ *
  */
