@@ -35,12 +35,20 @@
                             {{Form::textarea('description','',array('class'=>'form-control','placeholder'=>'Leírás'))}}
                         </div>
                     </div>
+
                     <div class="form-group">
                         {{Form::label('file', 'Dokumentum',array('class'=>'col-lg-2 control-label'))}}
                         <div class="col-lg-9">
                             {{Form::input('file','file','',array('class'=>'form-control','placeholder'=>'Dokumentum'))}}
                         </div>
                     </div>
+
+                     <div class="form-group">
+                         {{Form::label('category', 'Kategória',array('class'=>'col-lg-2 control-label'))}}
+                         <div class="col-lg-2">
+                            {{Form::selection('category[]', $categories,array('class'=>'form-control','multiple'=>'multiple'))}}
+                         </div>
+                     </div>
                 </div>
             </div>
             {{Form::close()}}

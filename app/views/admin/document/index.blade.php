@@ -29,6 +29,7 @@
                                     <th class="table-col-xs">Id</th>
                                     <th>Név</th>
                                     <th>Fájl</th>
+                                    <th>Kategória</th>
                                     <th>Létrehozva</th>
                                     <th class="table-col-xs sorter-false filter-false">Beállítások</th>
                                 </tr>           

@@ -4,6 +4,18 @@
 @stop
 @section('content')
 <div class="documents">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {{Form::open(array('url' => URL::route('dokumentumok.index',array()),'class'=>'form-inline','method'=>'POST'))}}
+            <div class="form-group">
+                    {{Form::label('category', 'Kategória:',array())}}
+                    {{Form::selection('category', $categories,array('class'=>'form-control'),$catId)}}
+            </div>
+            {{Form::submit('Szűrés',array('class'=>'btn btn-default'))}}
+            {{Form::close()}}
+        </div>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped table-middle">
             <thead>
