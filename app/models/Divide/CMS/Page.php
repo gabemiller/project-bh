@@ -47,7 +47,8 @@ class Page extends \Eloquent {
      * @param type $id
      */
     public static function getPagesForMenu($menu, $id) {
-        $pages = Page::where('parent', '=', $id)->get(['id', 'menu', 'parent', 'title']);
+        $pages = Page::whereRaw('parent = '.$id.' and is_competition = 0')
+                    ->get(['id', 'menu', 'parent', 'title']);
 
         if ($id == 0) {
             foreach ($pages as $page) {
