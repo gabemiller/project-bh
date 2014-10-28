@@ -24,7 +24,8 @@ class PageController extends \BaseController {
     public function index() {
         View::share('title', 'Oldalak');
 
-        $this->layout->content = View::make('admin.page.index')->with('pages', Page::all(['id','parent','menu','title']));
+        $this->layout->content = View::make('admin.page.index'
+        )->with('pages', Page::where('is_competition','=',false)->get(['id','parent','menu','title']));
     }
 
     /**
@@ -36,7 +37,8 @@ class PageController extends \BaseController {
 
         View::share('title', 'Oldal létrehozás');
 
-        $this->layout->content = View::make('admin.page.create')->with('galleries', Gallery::getGalleries())->with('pages', Page::getPages());
+        $this->layout->content = View::make('admin.page.create')
+            ->with('galleries', Gallery::getGalleries())->with('pages', Page::getPages());
     }
 
     /**
@@ -66,6 +68,7 @@ class PageController extends \BaseController {
             $page->parent = Input::get('parent');
             $page->content = Input::get('content');
             $page->gallery_id = is_numeric(Input::get('gallery')) ? Input::get('gallery') : 0;
+            $page->is_competition = false;
 
             if ($page->save()) {
                 return Redirect::back()->with('message', 'Az oldal létrehozása sikerült!');
@@ -135,6 +138,7 @@ class PageController extends \BaseController {
             $page->parent = Input::get('parent');
             $page->content = Input::get('content');
             $page->gallery_id = is_numeric(Input::get('gallery')) ? Input::get('gallery') : 0;
+            $page->is_competition = false;
 
             if ($page->save()) {
                 return Redirect::back()->with('message', 'Az oldal módosítása sikerült!');

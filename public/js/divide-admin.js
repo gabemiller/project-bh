@@ -395,6 +395,11 @@ $(function() {
         });
     });
 
+    /**
+     * Oldal menü
+     */
+
+    $('.treeview').children('ul').addClass('treeview-menu');
 
 });
 

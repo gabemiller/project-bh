@@ -4,17 +4,16 @@
  * -----------------------------------------------------------------------------
  * Site
  * -----------------------------------------------------------------------------
- * 
- * A cms-hez tarozó route-ok. 
- * 
+ *
+ * A cms-hez tarozó route-ok.
+ *
  */
 /* Route::get('/',function(){   
   return 'Cover page';
   }); */
 
 if (Config::get('app.debug')) {
-    Route::get('/phpinfo', function() {
-        //echo phpinfo();
+    Route::get('/phpinfo', function () {
         echo App::environment();
     });
 }
@@ -37,33 +36,32 @@ Route::get('galeriak/{id}/{title}', ['uses' => 'Site\GalleryController@show', 'a
 
 Route::get('oldal/{id}/{title}', ['uses' => 'Site\PageController@show', 'as' => 'oldalak.show'])->where('id', '[0-9]+')->where('title', '[0-9A-z_-]+');
 
-Route::get('palyazatok',['uses' => 'Site\PageController@showCompetitions', 'as' => 'palyazatok.index']);
+Route::get('palyazatok', ['uses' => 'Site\PageController@showCompetitions', 'as' => 'palyazatok.index']);
 
-Route::get('documentumok', ['uses' => 'Site\DocumentController@index', 'as' => 'dokumentumok.index']);
-Route::post('documentumok', ['uses' => 'Site\DocumentController@index', 'as' => 'dokumentumok.index']);
+Route::match(['POST', 'GET'], 'documentumok', ['uses' => 'Site\DocumentController@index', 'as' => 'dokumentumok.index']);
 
 /**
  * -----------------------------------------------------------------------------
  * Site menu
  * -----------------------------------------------------------------------------
- * 
- * A cms-hez tarozó menu-k. 
- * 
+ *
+ * A cms-hez tarozó menu-k.
+ *
  */
 if (!Request::is('admin') && !Request::is('admin/*')) {
 
-    Menu::make('competitionMenu',function($menu){
-        $menu->add('Pályázatok',array('route'=>'palyazatok.index'));
+    Menu::make('competitionMenu', function ($menu) {
+        $menu->add('Pályázatok', array('route' => 'palyazatok.index'));
     });
 
-    Menu::make('mainMenu', function($menu) {
+    Menu::make('mainMenu', function ($menu) {
 
         $menu->add('Főoldal', array('route' => 'fooldal'));
 
         $menu->add('Események', array('route' => 'esemenyek.index'));
 
         $menu->add('Galériák', array('route' => 'galeriak.index'));
-        
+
         $menu->add('Dokumentumok', array('route' => 'dokumentumok.index'));
 
         try {
@@ -75,7 +73,7 @@ if (!Request::is('admin') && !Request::is('admin/*')) {
                 }
             }
         } catch (\Exception $e) {
-            
+
         }
     });
 }
@@ -85,11 +83,11 @@ if (!Request::is('admin') && !Request::is('admin/*')) {
  * -----------------------------------------------------------------------------
  * Admin
  * -----------------------------------------------------------------------------
- * 
- * Az adminisztrációs felülethez tarozó route-ok. 
- * 
+ *
+ * Az adminisztrációs felülethez tarozó route-ok.
+ *
  */
-Route::group(array('prefix' => 'admin', 'namespace' => 'Admin'), function() {
+Route::group(array('prefix' => 'admin', 'namespace' => 'Admin'), function () {
 
     Route::get('bejelentkezes', ['uses' => 'UsersController@getLogin', 'as' => 'admin.bejelentkezes', 'before' => 'userLoggedIn']);
 
@@ -98,7 +96,7 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin'), function() {
     Route::get('kijelentkezes', ['uses' => 'UsersController@getLogout', 'as' => 'admin.kijelentkezes']);
 });
 
-Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'before' => 'userNotLoggedIn|inGroup:Admin'), function() {
+Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'before' => 'userNotLoggedIn|inGroup:Admin'), function () {
 
     /**
      * Általános beállításokhoz tartozó route-ok.
@@ -107,12 +105,14 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'before' => 'use
 
     Route::resource('oldal', 'PageController');
 
+    Route::resource('palyazat', 'CompetitionController');
+
     Route::resource('hir', 'ArticleController');
 
     Route::resource('esemeny', 'EventController');
-    
+
     Route::resource('dokumentum', 'DocumentController');
-    
+
     Route::resource('dokumentum-kategoria', 'DocumentCategoryController');
 
     Route::resource('galeria', 'GalleryController');
@@ -126,17 +126,134 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'before' => 'use
     /**
      * Felhasználók kezeléséhez tartozó route-ok.
      */
-    Route::group(['prefix' => 'felhasznalok'], function() {
+    Route::group(['prefix' => 'felhasznalok'], function () {
         Route::resource('felhasznalo', 'UsersController');
 
-        Route::post('felhasznalo/{id}/change', ['uses' => 'UsersController@postProfile', 'as' => 'admin.felhasznalok.felhasznalo.change']);
+        Route::post('felhasznalo/{id}/change',
+            ['uses' => 'UsersController@postProfile','as' => 'admin.felhasznalok.felhasznalo.change']);
 
-        Route::post('felhasznalo/{id}/password', ['uses' => 'UsersController@postPassword', 'as' => 'admin.felhasznalok.felhasznalo.password']);
+        Route::post('felhasznalo/{id}/password',
+            ['uses' => 'UsersController@postPassword', 'as' => 'admin.felhasznalok.felhasznalo.password']);
 
-        Route::post('felhasznalo/{id}/picture', ['uses' => 'UsersController@postProfilePicture', 'as' => 'admin.felhasznalok.felhasznalo.picture']);
+        Route::post('felhasznalo/{id}/picture',
+            ['uses' => 'UsersController@postProfilePicture', 'as' => 'admin.felhasznalok.felhasznalo.picture']);
 
-        Route::get('felhasznalo/{id}/picture/delete', ['uses' => 'UsersController@deleteProfilePicture', 'as' => 'admin.felhasznalok.felhasznalo.delete.picture']);
+        Route::get('felhasznalo/{id}/picture/delete',
+            ['uses' => 'UsersController@deleteProfilePicture', 'as' => 'admin.felhasznalok.felhasznalo.delete.picture']);
 
         Route::resource('felhasznalo-csoport', 'GroupsController');
     });
 });
+
+/**
+ * -----------------------------------------------------------------------------
+ * Admin menu
+ * -----------------------------------------------------------------------------
+ *
+ * Az adminfelülethez tarozó menu-k.
+ *
+ */
+if (Request::is('admin') || Request::is('admin/*')) {
+
+    Menu::make('adminMenu', function ($menu) {
+
+        $menu->add('<i class="fa fa-dashboard"></i> Vezérlőpult',
+            ['route' => 'admin.vezerlopult']);
+
+        /**
+         * Bejegyzés menüpont
+         */
+        $menu->add('Bejegyzés', ['class' => 'treeview'])
+            ->append('<i class="fa pull-right fa-angle-left"></i>')
+            ->prepend('<i class="fa fa-pencil"></i> ');
+
+        $menu->get('bejegyzés')->add('Új hozzáadása',
+            ['route' => 'admin.hir.create'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+        $menu->get('bejegyzés')->add('Összes hír',
+            ['route' => 'admin.hir.index'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+        /**
+         *
+         */
+        $menu->add('Esemény', ['class' => 'treeview'])
+            ->append('<i class="fa pull-right fa-angle-left"></i>')
+            ->prepend('<i class="fa fa-calendar"></i> ');
+
+        $menu->get('esemény')->add('Új hozzáadása',
+            ['route' => 'admin.esemeny.create'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+        $menu->get('esemény')->add('Összes esemény',
+            ['route' => 'admin.esemeny.index'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+        /**
+         * Média menüpont
+         */
+        $menu->add('Média', ['class' => 'treeview'])
+            ->append('<i class="fa pull-right fa-angle-left"></i>')
+            ->prepend('<i class="fa fa-photo"></i> ')
+            ->active('/admin/dokumentum-kategoria/*');
+
+        $menu->get('média')->add('Képgaléria',
+            ['route' => 'admin.galeria.index'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+        $menu->get('média')->add('Dokumentumok',
+            ['route' => 'admin.dokumentum.index'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ')
+            ->active('admin/dokumentum-kategoria/*');
+
+        /**
+         * Oldal menüpont
+         */
+        $menu->add('Oldal', ['class' => 'treeview'])
+            ->append('<i class="fa pull-right fa-angle-left"></i>')
+            ->prepend('<i class="fa fa-file-text-o"></i> ');
+
+        $menu->get('oldal')->add('Új oldal',
+            ['route' => 'admin.oldal.create'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+        $menu->get('oldal')->add('Összes oldal',
+            ['route' => 'admin.oldal.index'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+        /**
+         * Pályázat menüpont
+         */
+        $menu->add('Pályázat', ['class' => 'treeview'])
+            ->append('<i class="fa pull-right fa-angle-left"></i>')
+            ->prepend('<i class="fa fa-file-powerpoint-o"></i> ');
+
+        $menu->get('pályázat')->add('Új pályázat',
+            ['route' => 'admin.palyazat.create'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+        $menu->get('pályázat')->add('Összes pályázat',
+            ['route' => 'admin.palyazat.index'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+
+        /**
+         * Felhasználók menüpont
+         */
+
+        $menu->add('Felhasználók', ['class' => 'treeview'])
+            ->append('<i class="fa pull-right fa-angle-left"></i>')
+            ->prepend('<i class="fa fa-users"></i> ');
+
+        $menu->get('felhasználók')->add('Új hozzáadása',
+            ['route' => 'admin.felhasznalok.felhasznalo.create'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+        $menu->get('felhasználók')->add('Összes felhasználó',
+            ['route' => 'admin.felhasznalok.felhasznalo.index'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+
+    });
+}
