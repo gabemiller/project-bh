@@ -204,7 +204,8 @@ if (Request::is('admin') || Request::is('admin/*')) {
 
         $menu->get('média')->add('Dokumentumok',
             ['route' => 'admin.dokumentum.index'])
-            ->prepend('<i class="fa fa-angle-double-right "></i> ');
+            ->prepend('<i class="fa fa-angle-double-right "></i> ')
+            ->active('admin/dokumentum-kategoria/*');
 
         /**
          * Oldal menüpont
