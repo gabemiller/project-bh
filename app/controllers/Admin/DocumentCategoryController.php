@@ -25,7 +25,9 @@ class DocumentCategoryController extends \BaseController {
     public function create() {
         View::share('title', 'Dokumentum kategóriák');
 
-        $this->layout->content = View::make('admin.documentcategory.create')->with('docCategories', DocumentCategory::all())->with('categories', DocumentCategory::getCategories(0,true));
+        $this->layout->content = View::make('admin.documentcategory.create')
+            ->with('docCategories', DocumentCategory::all())
+            ->with('categories', DocumentCategory::getCategories(0,true));
     }
 
     /**
@@ -50,6 +52,7 @@ class DocumentCategoryController extends \BaseController {
             $docCat = new DocumentCategory();
 
             $docCat->name = Input::get('name');
+            $docCat->slug = Str::slug(Input::get('name'));
             $docCat->parent = is_numeric(Input::get('parent')) ? Input::get('parent') : 0;
 
 
@@ -114,6 +117,7 @@ class DocumentCategoryController extends \BaseController {
             $docCat = DocumentCategory::findOrFail($id);
 
             $docCat->name = Input::get('name');
+            $docCat->slug = Str::slug(Input::get('name'));
             $docCat->parent = is_numeric(Input::get('parent')) ? Input::get('parent') : 0;
 
 

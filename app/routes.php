@@ -1,6 +1,16 @@
 <?php
 
 /**
+ * Patterns
+ */
+
+Route::pattern('title', '[0-9A-z_-]+');
+Route::pattern('id', '[0-9]+');
+Route::pattern('tagSlug', '[0-9A-z_-]+');
+Route::pattern('category', '[0-9A-z_-]+');
+
+
+/**
  * -----------------------------------------------------------------------------
  * Site
  * -----------------------------------------------------------------------------
@@ -8,37 +18,30 @@
  * A cms-hez tarozó route-ok.
  *
  */
-/* Route::get('/',function(){   
-  return 'Cover page';
-  }); */
-
-if (Config::get('app.debug')) {
-    Route::get('/phpinfo', function () {
-        echo App::environment();
-    });
-}
 
 Route::get('/', ['uses' => 'Site\HomeController@index', 'as' => 'fooldal']);
 
-Route::get('hirek/{id}/{title}', ['uses' => 'Site\ArticleController@show', 'as' => 'hirek.show'])->where('id', '[0-9]+')->where('title', '[0-9A-z_-]+');
+Route::get('hirek/{id}/{title}', ['uses' => 'Site\ArticleController@show', 'as' => 'hirek.show']);
 
-Route::get('hirek/cimke/{id}/{tagSlug}', ['uses' => 'Site\ArticleController@tag', 'as' => 'hirek.tag'])->where('id', '[0-9]+')->where('tagSlug', '[0-9A-z_-]+');
+Route::get('hirek/cimke/{id}/{tagSlug}', ['uses' => 'Site\ArticleController@tag', 'as' => 'hirek.tag']);
 
 Route::get('esemenyek', ['uses' => 'Site\EventController@index', 'as' => 'esemenyek.index']);
 
-Route::get('esemenyek/{id}/{title}', ['uses' => 'Site\EventController@show', 'as' => 'esemenyek.show'])->where('id', '[0-9]+')->where('title', '[0-9A-z_-]+');
+Route::get('esemenyek/{id}/{title}', ['uses' => 'Site\EventController@show', 'as' => 'esemenyek.show']);
 
-Route::get('esemenyek/cimke/{id}/{tagSlug}', ['uses' => 'Site\EventController@tag', 'as' => 'esemenyek.tag'])->where('id', '[0-9]+')->where('tagSlug', '[0-9A-z_-]+');
+Route::get('esemenyek/cimke/{id}/{tagSlug}', ['uses' => 'Site\EventController@tag', 'as' => 'esemenyek.tag']);
 
 Route::get('galeriak', ['uses' => 'Site\GalleryController@index', 'as' => 'galeriak.index']);
 
-Route::get('galeriak/{id}/{title}', ['uses' => 'Site\GalleryController@show', 'as' => 'galeriak.show'])->where('id', '[0-9]+')->where('title', '[0-9A-z_-]+');
+Route::get('galeriak/{id}/{title}', ['uses' => 'Site\GalleryController@show', 'as' => 'galeriak.show']);
 
-Route::get('oldal/{id}/{title}', ['uses' => 'Site\PageController@show', 'as' => 'oldalak.show'])->where('id', '[0-9]+')->where('title', '[0-9A-z_-]+');
+Route::get('oldal/{id}/{title}', ['uses' => 'Site\PageController@show', 'as' => 'oldalak.show']);
 
 Route::get('palyazatok', ['uses' => 'Site\PageController@showCompetitions', 'as' => 'palyazatok.index']);
 
-Route::match(['POST', 'GET'], 'documentumok', ['uses' => 'Site\DocumentController@index', 'as' => 'dokumentumok.index']);
+//Route::match(['POST', 'GET'], 'documentumok', ['uses' => 'Site\DocumentController@index', 'as' => 'dokumentumok.index']);
+
+Route::get('dokumentumok/{category?}', ['uses' => 'Site\DocumentController@index', 'as' => 'dokumentumok.index']);
 
 /**
  * -----------------------------------------------------------------------------
@@ -65,6 +68,14 @@ if (!Request::is('admin') && !Request::is('admin/*')) {
         $menu->add('Dokumentumok', array('route' => 'dokumentumok.index'));
 
         try {
+
+            foreach (\Divide\CMS\DocumentCategory::all(['name','slug']) as $docCat) {
+                $menu->get('dokumentumok')->add($docCat->name,
+                    ['route'=>['dokumentumok.index',
+                        'category'=>$docCat->slug]]);
+            }
+
+
             \Divide\CMS\Page::getPagesForMenu($menu, 0);
 
             foreach ($menu->all() as $item) {
