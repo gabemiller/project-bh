@@ -4,7 +4,6 @@ namespace Site;
 
 use Divide\CMS\Document;
 use Divide\CMS\DocumentCategory;
-use Input;
 use View;
 
 class DocumentController extends \BaseController
