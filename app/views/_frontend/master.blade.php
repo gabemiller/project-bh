@@ -42,6 +42,7 @@
 
                                         <div class="collapse" id="navCollapse">
                                             <h4>Pályázatok</h4>
+                                            {{HTML::decode(HTML::linkRoute('oldalak','<img class="img-responsive" src="/img/gallery/36/1421015562.1366-egeszsegugyi-alapellatas-fejlesztese.jpg" alt="Infóblokk">',['id'=>17,'title'=>'egeszsegugyi-alapellatas-fejlesztese-banhorvati-es-nagybarca-kozsegekben-emop-411a-12-2013-0071']))}}
                                             {{$competitionMenu->asUl(array('class'=>'list-unstyled nav-menu-competition'))}}
                                             <h4>Navigáció</h4>
                                             {{$mainMenu->asUl(array('class'=>'list-unstyled nav-menu'))}}
