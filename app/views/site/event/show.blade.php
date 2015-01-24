@@ -7,7 +7,7 @@
     <div class="event">
         <h1>{{HTML::link($event->getLink(),$event->title)}}</h1>
 
-        <p class="small text-uppercase text-muted">Kezdés {{$event->start}}, Befejezés {{$event->end}} </p>
+        <p class="small text-uppercase text-muted"><strong>Kezdés</strong> {{$event->start}}, <strong>Befejezés</strong> {{$event->end}} </p>
 
         <div class="event-content">
             {{$event->content}}
