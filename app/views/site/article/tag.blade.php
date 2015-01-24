@@ -6,9 +6,10 @@
 
     @foreach($articles as $article)
         <div class="article list-box">
-            <h3>{{HTML::link($article->getLink(),$article->title)}}</h3>
+            <h2>{{HTML::link($article->getLink(),$article->title)}}</h2>
 
-            <p class="small text-uppercase text-muted"><strong>{{$article->getAuthorName()}}</strong>, {{$article->getCreateDate()}} </p>
+            <p class="small text-uppercase text-muted">
+                <strong>{{$article->getAuthorName()}}</strong>, {{$article->getCreateDate()}} </p>
 
             <p class="text-justify">{{$article->getParragraph()}}</p>
 

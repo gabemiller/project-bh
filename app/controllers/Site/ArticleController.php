@@ -24,7 +24,9 @@ class ArticleController extends \BaseController {
         
         View::share('title', $article->title);
         
-        $this->layout->content = View::make('site.article.show')->with('article', $article)->with('url',Request::url());
+        $this->layout->content = View::make('site.article.show')
+            ->with('article', $article)
+            ->with('url',Request::url());
     }
     
     /**
@@ -39,7 +41,9 @@ class ArticleController extends \BaseController {
         
         $article = Article::withAnyTag($tag->name)->orderBy('created_at','desc')->paginate(10);
 
-        $this->layout->content = View::make('site.article.tag')->with('articles',$article)->with('tag',$tag);
+        $this->layout->content = View::make('site.article.tag')
+            ->with('articles',$article)
+            ->with('tag',$tag);
     }
 
 }
