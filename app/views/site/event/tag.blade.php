@@ -7,7 +7,7 @@
 @foreach($events as $event)
 <div class="event list-box">
     <h3>{{HTML::link($event->getLink(),$event->title)}}</h3>
-    <p class="small">Kezdés: {{$event->start}} | Befejezés: {{$event->end}} </p>
+    <p class="small text-uppercase text-muted">Kezdés {{$event->start}}, Befejezés {{$event->end}} </p>
     <p class="text-justify">{{$event->getParragraph()}}</p>
     <div class="tags">
         @if(sizeof($event->tagNames()) > 0)
