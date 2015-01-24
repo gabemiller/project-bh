@@ -519,3 +519,17 @@ fieldset[disabled] .btn-tardona-yellow.active {
 .table-col-lg{
     width: 250px;
 }
+
+.table>thead>tr>th,
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td{
+    vertical-align: middle;
+    border-top: 0 none;
+}
+
+.table>thead>tr>th{
+    border-bottom: 0 none;
+}
