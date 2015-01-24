@@ -28,11 +28,11 @@ class DocumentController extends \BaseController
             $doc = Document::whereHas('categories', function ($q) use($cat) {
                 $q->where('documentcategory_id', '=', $cat->id);
 
-            })->get();
+            })->paginate(10);
 
 
         } else {
-            $doc = Document::all();
+            $doc = Document::paginate(10);
         }
 
         $this->layout->content = View::make('site.document.index')
