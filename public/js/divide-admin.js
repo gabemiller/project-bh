@@ -23,6 +23,7 @@ $(function() {
     /**
      * -------------------------------------------------------------------------
      * Summernote
+     * Ckeditor
      * -------------------------------------------------------------------------
      * 
      * 
@@ -31,6 +32,13 @@ $(function() {
     $('#summernote-textarea').summernote({
         height: 300,
         lang: 'hu-HU'
+    });
+
+    $('.ckeditor').ckeditor({
+        //'filebrowserBrowseUrl': '/elfinder/ckeditor4',
+        'contentsCss': '/ckeditor/css/bootstrap.css',
+        'removePlugins': 'scayt',
+        'skin': 'bootstrapck'
     });
 
     /**
