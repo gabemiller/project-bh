@@ -12,7 +12,8 @@ use Validator;
 use Redirect;
 use Config;
 
-class EventController extends \BaseController {
+class EventController extends \BaseController
+{
 
     protected $layout = '_backend.master';
 
@@ -22,10 +23,11 @@ class EventController extends \BaseController {
      *
      * @return Response
      */
-    public function index() {
+    public function index()
+    {
         View::share('title', 'Oldalak');
 
-        $this->layout->content = View::make('admin.event.index')->with('events', Event::all(['id','title','start','end']));
+        $this->layout->content = View::make('admin.event.index')->with('events', Event::all(['id', 'title', 'start', 'end']));
     }
 
     /**
@@ -34,7 +36,8 @@ class EventController extends \BaseController {
      *
      * @return Response
      */
-    public function create() {
+    public function create()
+    {
         View::share('title', 'Oldalak');
 
         $this->layout->content = View::make('admin.event.create')->with('galleries', Gallery::getGalleries());
@@ -46,7 +49,8 @@ class EventController extends \BaseController {
      *
      * @return Response
      */
-    public function store() {
+    public function store()
+    {
 
         try {
 
@@ -74,9 +78,9 @@ class EventController extends \BaseController {
             $event->gallery_id = is_numeric(Input::get('gallery')) ? Input::get('gallery') : 0;
 
             if ($event->save()) {
-				if(Input::get('tags')){
-					$event->tag(explode(',',Input::get('tags')));
-				}
+                if (Input::get('tags')) {
+                    $event->tag(explode(',', Input::get('tags')));
+                }
                 return Redirect::back()->with('message', 'Az esemény feltöltése sikerült!');
             } else {
                 return Redirect::back()->withInput()->withErrors('Az esemény feltöltése nem sikerült!');
@@ -94,10 +98,11 @@ class EventController extends \BaseController {
      * Display the specified resource.
      * GET /admin\event/{id}
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         View::share('title', 'Oldalak');
 
         $this->layout->content = View::make('admin.event.show');
@@ -107,10 +112,11 @@ class EventController extends \BaseController {
      * Show the form for editing the specified resource.
      * GET /admin\event/{id}/edit
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         View::share('title', 'Oldalak');
 
         $this->layout->content = View::make('admin.event.edit')->with('event', Event::find($id))->with('galleries', Gallery::getGalleries());
@@ -120,10 +126,11 @@ class EventController extends \BaseController {
      * Update the specified resource in storage.
      * PUT /admin\event/{id}
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function update($id) {
+    public function update($id)
+    {
 
         try {
 
@@ -149,7 +156,7 @@ class EventController extends \BaseController {
             $event->end = Input::get('end');
             $event->shows = Input::get('shows') ? true : false;
             $event->gallery_id = is_numeric(Input::get('gallery')) ? Input::get('gallery') : 0;
-            $article->retag(explode(',',Input::get('tags')));
+            $event->retag(explode(',', Input::get('tags')));
 
             if ($event->save()) {
                 return Redirect::back()->with('message', 'Az esemény módosítása sikerült!');
@@ -169,10 +176,11 @@ class EventController extends \BaseController {
      * Remove the specified resource from storage.
      * DELETE /admin\event/{id}
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
 
             $event = Event::find($id);
