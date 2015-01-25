@@ -26,7 +26,7 @@
                             {{HTML::decode(HTML::linkRoute('galeriak.show','<img class="img-responsive" src="'.$gallery->pictures->first()->thumbnail_path.'" alt="'.$gallery->name.'" title="'.$gallery->name.'" />',array('id'=>$gallery->id,'title'=>$gallery->getSlugName())))}}
                         </td>
                         <td>
-                            {{HTML::decode(HTML::linkRoute('galeriak.show','<h3>'.$gallery->name.'</h3>',array('id'=>$gallery->id,'title'=>$gallery->getSlugName())))}}
+                            {{HTML::decode(HTML::linkRoute('galeriak.show','<strong>'.$gallery->name.'</strong>',array('id'=>$gallery->id,'title'=>$gallery->getSlugName())))}}
                             @if(strlen($gallery->getDescription())>0)
                                 <p>{{$gallery->getDescription()}}</p>
                             @endif
