@@ -6,7 +6,7 @@
 
     @foreach($events as $event)
         <div class="event list-box">
-            <h3>{{HTML::link($event->getLink(),$event->title)}}</h3>
+            <h2>{{HTML::link($event->getLink(),$event->title)}}</h2>
 
             <p class="small text-uppercase text-muted"><strong>Kezdés</strong> {{$event->start}},
                 <strong>Befejezés</strong> {{$event->end}} </p>
