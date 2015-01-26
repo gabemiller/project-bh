@@ -7,7 +7,7 @@
         "laravel/framework": "4.2.*",
         "davejamesmiller/laravel-breadcrumbs": "~2.2.1",
         "way/generators": "2.*",
-        "rtconner/laravel-tagging": "dev-master",
+        "rtconner/laravel-tagging": "~0.4",
         "cartalyst/sentry": "2.1.*",
         "intervention/image": "2.*",
         "lavary/laravel-menu": "1.5.0",
