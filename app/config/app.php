@@ -23,7 +23,7 @@ return array(
       | your application so that it is used when running Artisan tasks.
       |
      */
-    'url' => 'http://localhost',
+    'url' => 'http://banhorvati.hu',
     /*
       |--------------------------------------------------------------------------
       | Application Timezone
@@ -106,11 +106,13 @@ return array(
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
+
         'Cartalyst\Sentry\SentryServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'Lavary\Menu\ServiceProvider',
+        'Barryvdh\Elfinder\ElfinderServiceProvider',
     ),
     /*
       |--------------------------------------------------------------------------

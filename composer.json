@@ -10,7 +10,8 @@
         "rtconner/laravel-tagging": "dev-master",
         "cartalyst/sentry": "2.1.*",
         "intervention/image": "2.*",
-        "lavary/laravel-menu": "1.5.0"
+        "lavary/laravel-menu": "1.5.0",
+        "barryvdh/laravel-elfinder": "0.2.*"
     },
     "autoload": {
         "classmap": [
