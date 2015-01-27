@@ -13,30 +13,6 @@
 
 App::before(function ($request) {
 
-    /**
-     * A láblévben megjelenő cikkek objektumát hozza létre.
-     */
-    if (!Request::is('admin') && !Request::is('admin/*')) {
-        View::share('articleFooter', \Divide\CMS\Article::orderBy('created_at', 'desc')->take('3')->get(['id', 'title', 'author_id', 'created_at']));
-    }
-
-    /**
-     * A felhasználó objektumát hozza létre!.
-     */
-    if ((Request::is('admin') || Request::is('admin/*')) && Sentry::check()) {
-        View::share('user', \Divide\CMS\User::find(\Sentry::getUser()->id));
-    }
-
-
-    /* if(Request::path()!='/')
-      {
-      return Redirect::to('/');
-      } */
-
-    /* if( ! Request::secure() && FALSE)
-      {
-      return Redirect::secure(Request::path());
-      } */
 });
 
 

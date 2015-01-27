@@ -14,7 +14,6 @@ footer {
     bottom: 0;
     width: 100%;
     margin-top: 40px;
-    background-color: #e5e5e5;
 }
 
 footer h3 {
@@ -95,6 +94,13 @@ footer .footer-bottom .footer-logo-link .footer-logo:hover {
         display: block;
         margin: 0 auto;
     }
+}
+
+.footer-box{
+    background-color: #ffffff;
+    padding: 10px;
+    min-height: 315px;
+    margin-bottom: 20px;
 }
 
 .form-control:focus {
