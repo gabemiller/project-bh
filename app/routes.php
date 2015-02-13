@@ -59,7 +59,13 @@ if (!Request::is('admin') && !Request::is('admin/*')) {
 
     Menu::make('mainMenu', function ($menu) {
 
-        $menu->add('Főoldal', array('route' => 'fooldal'));
+        try {
+            \Divide\CMS\MenuItem::generateMenu($menu, null);
+        } catch (\Exception $ex) {
+
+        }
+
+        /*$menu->add('Főoldal', array('route' => 'fooldal'));
 
         $menu->add('Események', array('route' => 'esemenyek.index'));
 
@@ -69,10 +75,10 @@ if (!Request::is('admin') && !Request::is('admin/*')) {
 
         try {
 
-            foreach (\Divide\CMS\DocumentCategory::all(['name','slug']) as $docCat) {
+            foreach (\Divide\CMS\DocumentCategory::all(['name', 'slug']) as $docCat) {
                 $menu->get('dokumentumok')->add($docCat->name,
-                    ['route'=>['dokumentumok.index',
-                        'category'=>$docCat->slug]]);
+                    ['route' => ['dokumentumok.index',
+                        'category' => $docCat->slug]]);
             }
 
 
@@ -85,7 +91,7 @@ if (!Request::is('admin') && !Request::is('admin/*')) {
             }
         } catch (\Exception $e) {
 
-        }
+        }*/
     });
 }
 
@@ -139,6 +145,8 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'before' => 'use
 
     Route::resource('dokumentum-kategoria', 'DocumentCategoryController');
 
+    Route::resource('menu-kezelo', 'MenuController');
+
     Route::resource('galeria', 'GalleryController');
 
     Route::get('galeria/kep/{id}/upload', ['uses' => 'GalleryController@getPicture', 'as' => 'admin.galeria.kep.upload'])->where('id', '[0-9]+');
@@ -154,7 +162,7 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'before' => 'use
         Route::resource('felhasznalo', 'UsersController');
 
         Route::post('felhasznalo/{id}/change',
-            ['uses' => 'UsersController@postProfile','as' => 'admin.felhasznalok.felhasznalo.change']);
+            ['uses' => 'UsersController@postProfile', 'as' => 'admin.felhasznalok.felhasznalo.change']);
 
         Route::post('felhasznalo/{id}/password',
             ['uses' => 'UsersController@postPassword', 'as' => 'admin.felhasznalok.felhasznalo.password']);
@@ -260,6 +268,12 @@ if (Request::is('admin') || Request::is('admin/*')) {
         $menu->get('pályázat')->add('Összes pályázat',
             ['route' => 'admin.palyazat.index'])
             ->prepend('<i class="fa fa-angle-double-right "></i> ');
+
+        /**
+         * Menükezelő menüpont
+         */
+        $menu->add('<i class="fa fa-bars"></i> Menü kezelő',
+            ['route' => 'admin.menu-kezelo.create']);
 
 
         /**

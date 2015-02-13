@@ -68,4 +68,18 @@ class Article extends \Eloquent {
         return 'hirek/' . $this->id . '/' . Str::slug($this->title);
     }
 
+
+    /**
+     * @return array
+     */
+    public static function getArray()
+    {
+        $arr = array();
+
+        foreach (static::all(['id', 'title']) as $item) {
+            $arr[$item->id] = $item->title;
+        }
+
+        return $arr;
+    }
 }

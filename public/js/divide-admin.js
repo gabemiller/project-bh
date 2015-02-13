@@ -412,6 +412,14 @@ $(function() {
     });
 
     /**
+     * Menütípus tab váltás
+     */
+
+    $('select[name=type]').change(function () {
+        $('a[href="#' + $(this).val() + '"]').tab('show');
+    });
+
+    /**
      * Oldal menü
      */
 

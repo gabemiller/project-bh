@@ -78,4 +78,18 @@ class Page extends \Eloquent
         }
     }
 
+    /**
+     * @return array
+     */
+    public static function getArray()
+    {
+        $arr = array();
+
+        foreach (static::all(['id', 'title']) as $item) {
+            $arr[$item->id] = $item->title;
+        }
+
+        return $arr;
+    }
+
 }

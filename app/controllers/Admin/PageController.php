@@ -11,6 +11,7 @@ use Exception;
 use Validator;
 use Redirect;
 use Config;
+use Str;
 
 class PageController extends \BaseController {
 
@@ -24,8 +25,9 @@ class PageController extends \BaseController {
     public function index() {
         View::share('title', 'Oldalak');
 
-        $this->layout->content = View::make('admin.page.index'
-        )->with('pages', Page::where('is_competition','=',false)->get(['id','parent','menu','title']));
+        $this->layout->content = View::make('admin.page.index')
+            ->with('pages', Page::where('is_competition','=',false)
+                ->get(['id','title','created_at','updated_at']));
     }
 
     /**
@@ -51,11 +53,12 @@ class PageController extends \BaseController {
 
             $rules = array(
                 'title' => 'required|unique:pages',
-                'menu' => 'required|unique:pages',
+                //'menu' => 'required|unique:pages',
                 'content' => 'required'
             );
 
             $validation = Validator::make(Input::all(), $rules);
+
 
             if ($validation->fails()) {
                 return Redirect::back()->withInput()->withErrors($validation->messages());
@@ -64,8 +67,8 @@ class PageController extends \BaseController {
             $page = new Page();
 
             $page->title = Input::get('title');
-            $page->menu = Input::get('menu');
-            $page->parent = Input::get('parent');
+            $page->menu = Str::slug(Input::get('title'));//Input::get('menu');
+            $page->parent = 0;//Input::get('parent');
             $page->content = Input::get('content');
             $page->gallery_id = is_numeric(Input::get('gallery')) ? Input::get('gallery') : 0;
             $page->is_competition = false;
@@ -121,7 +124,7 @@ class PageController extends \BaseController {
 
             $rules = array(
                 'title' => 'required|unique:pages,title,' . $id,
-                'menu' => 'required|unique:pages,menu,' . $id,
+                //'menu' => 'required|unique:pages,menu,' . $id,
                 'content' => 'required'
             );
 
@@ -134,8 +137,8 @@ class PageController extends \BaseController {
             $page = Page::find($id);
 
             $page->title = Input::get('title');
-            $page->menu = Input::get('menu');
-            $page->parent = Input::get('parent');
+            $page->menu = Str::slug(Input::get('title'));//Input::get('menu');
+            $page->parent = 0;//Input::get('parent');
             $page->content = Input::get('content');
             $page->gallery_id = is_numeric(Input::get('gallery')) ? Input::get('gallery') : 0;
             $page->is_competition = false;

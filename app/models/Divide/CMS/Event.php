@@ -27,4 +27,18 @@ class Event extends \Eloquent {
         return Str::limit(strip_tags($this->content), $characters,$end);
     }
 
+
+    /**
+     * @return array
+     */
+    public static function getArray()
+    {
+        $arr = array();
+
+        foreach (static::all(['id', 'title']) as $item) {
+            $arr[$item->id] = $item->title;
+        }
+
+        return $arr;
+    }
 }
