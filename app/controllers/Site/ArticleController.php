@@ -26,7 +26,7 @@ class ArticleController extends \BaseController {
             ->select(['id', 'title', 'author_id', 'created_at', 'content'])
             ->paginate(5);
 
-        $this->layout->content = View::make('index')
+        $this->layout->content = View::make('site.article.index')
             ->with('articles', $article);
     }
 
