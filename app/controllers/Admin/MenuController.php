@@ -11,12 +11,11 @@ use Divide\CMS\Menu;
 use Divide\CMS\MenuItem;
 use Divide\CMS\Page;
 use Divide\Helper\Tag;
+use Divide\Presenter\MenuItemPresenter;
 use View;
 use Response;
 use Exception;
 use Input;
-use Str;
-use URL;
 use Validator;
 use Redirect;
 
@@ -72,60 +71,7 @@ class MenuController extends \BaseController
         $menuItem = new MenuItem();
 
         if (Input::has('type')) {
-            switch (Input::get('type')) {
-                case 'fooldal':
-                    $generatedUrl = URL::route('fooldal', array(), false);
-                    break;
-                case 'kulso-hivatkozas':
-                    $generatedUrl = Input::get('url');
-                    break;
-                case 'bejegyzesek':
-                    if (intval(Input::get('articleTag')) > 0) {
-                        $tag = Tag::find(Input::get('articleTag'));
-                        $generatedUrl = URL::route('hirek.tag', array('id' => $tag->id, 'tagSlug' => Str::slug($tag->slug)), false);
-                    } else {
-                        $generatedUrl = URL::route('hirek.index', array(), false);
-                    }
-                    break;
-                case 'egy-bejegyzes':
-                    $article = Article::find(Input::get('article_id'));
-                    $generatedUrl = URL::route('hirek.show', array('id' => $article->id, 'title' => Str::slug($article->title)), false);
-                    break;
-                case 'esemenyek':
-                    if (intval(Input::get('eventTag')) > 0) {
-                        $tag = Tag::find(Input::get('eventTag'));
-                        $generatedUrl = URL::route('esemenyek.tag', array('id' => $tag->id, 'tagSlug' => Str::slug($tag->slug)), false);
-                    } else {
-                        $generatedUrl = URL::route('esemenyek.index', array(), false);
-                    }
-                    break;
-                case 'egy-esemeny':
-                    $event = Event::find(Input::get('event_id'));
-                    $generatedUrl = URL::route('esemenyek.show', array('id' => $event->id, 'title' => Str::slug($event->title)), false);
-                    break;
-                case 'galeriak':
-                    $generatedUrl = URL::route('galeriak.index', array(), false);
-                    break;
-                case 'egy-galeria':
-                    $gallery = Gallery::find(Input::get('gallery_id'));
-                    $generatedUrl = URL::route('galeriak.show', array('id' => $gallery->id, 'title' => Str::slug($gallery->name)), false);
-                    break;
-                case 'egy-oldal':
-                    $page = Page::find(Input::get('page_id'));
-                    $generatedUrl = URL::route('oldalak.show', array('id' => $page->id, 'title' => Str::slug($page->title)), false);
-                    break;
-                case 'dokumentumok':
-                    if (intval(Input::get('document_category_id')) > 0) {
-                        $docCat = DocumentCategory::find(Input::get('document_category_id'));
-                        $generatedUrl = URL::route('dokumentumok.index', array('category'=>Str::slug($docCat->name)), false);
-                    } else {
-                        $generatedUrl = URL::route('dokumentumok.index', array(), false);
-                    }
-
-                    break;
-                default:
-                    break;
-            }
+            $generatedUrl = MenuItemPresenter::generateUrl(Input::all());
         }
 
         $menuItem->menu_id = Input::get('menu_id');
@@ -155,7 +101,15 @@ class MenuController extends \BaseController
         $this->layout->content = View::make('admin.menu.edit')
             ->with('menus', Menu::getMenus())
             ->with('parents', MenuItem::getMenuItems())
-            ->with('menuItem', MenuItem::find($id));
+            ->with('menuItem', MenuItem::find($id))
+            ->with('types', MenuItem::types())
+            ->with('articleTags', Tag::getArray())
+            ->with('articles', Article::getArray())
+            ->with('eventTags', Tag::getArray())
+            ->with('events', Event::getArray())
+            ->with('galleries', Gallery::getGalleries())
+            ->with('pages', Page::getArray())
+            ->with('documentCategories', DocumentCategory::getArray());
     }
 
     /**
@@ -168,6 +122,7 @@ class MenuController extends \BaseController
     public function update($id)
     {
         try {
+
             $rules = array(
                 'name' => 'required',
             );
@@ -182,6 +137,10 @@ class MenuController extends \BaseController
 
             $menuItem->parent_id = intval(Input::get('parent_id')) > 0 ? Input::get('parent_id') : null;
             $menuItem->name = Input::get('name');
+
+            if(Input::has('url_modification') && Input::get('url_modification')){
+                $menuItem->url = MenuItemPresenter::generateUrl(Input::all());
+            }
 
             if ($menuItem->save()) {
                 return Redirect::back()->with('message', 'A menüpont módosítása sikerült!');
