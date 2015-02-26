@@ -9,6 +9,8 @@ use Str;
  * Divide\CMS\MenuItem
  *
  * @property-read \Divide\CMS\Menu $menu
+ * @property-read \Divide\CMS\MenuItem $parent 
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Divide\CMS\MenuItem[] $children 
  */
 class MenuItem extends \Eloquent
 {

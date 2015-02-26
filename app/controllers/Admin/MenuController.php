@@ -3,6 +3,8 @@
 namespace Admin;
 
 use Divide\CMS\Article;
+use Divide\CMS\Document;
+use Divide\CMS\DocumentCategory;
 use Divide\CMS\Event;
 use Divide\CMS\Gallery;
 use Divide\CMS\Menu;
@@ -43,7 +45,8 @@ class MenuController extends \BaseController
             ->with('eventTags', Tag::getArray())
             ->with('events', Event::getArray())
             ->with('galleries', Gallery::getGalleries())
-            ->with('pages', Page::getArray());
+            ->with('pages', Page::getArray())
+            ->with('documentCategories', DocumentCategory::getArray());
 
     }
 
@@ -112,7 +115,13 @@ class MenuController extends \BaseController
                     $generatedUrl = URL::route('oldalak.show', array('id' => $page->id, 'title' => Str::slug($page->title)), false);
                     break;
                 case 'dokumentumok':
-                    $generatedUrl = URL::route('dokumentumok.index', array(), false);
+                    if (intval(Input::get('document_category_id')) > 0) {
+                        $docCat = DocumentCategory::find(Input::get('document_category_id'));
+                        $generatedUrl = URL::route('dokumentumok.index', array('category'=>Str::slug($docCat->name)), false);
+                    } else {
+                        $generatedUrl = URL::route('dokumentumok.index', array(), false);
+                    }
+
                     break;
                 default:
                     break;
@@ -200,7 +209,7 @@ class MenuController extends \BaseController
     {
         try {
 
-            $menuItem = MenuItem::find($id);
+            $menuItem = MenuItem::findOrFail($id);
 
             if ($menuItem->delete()) {
                 return Response::json(['message' => 'A(z) ' . $id . ' azonosítójú menüpont törlése sikerült!', 'status' => true]);

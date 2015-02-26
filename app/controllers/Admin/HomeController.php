@@ -21,7 +21,11 @@ class HomeController extends \BaseController {
     public function index() {
         View::share('title', 'Vezérlőpult');
         
-        $this->layout->content = View::make('admin')->with('article',Article::count())->with('event',Event::count())->with('gallery',Gallery::count())->with('page',Page::count());
+        $this->layout->content = View::make('admin')
+            ->with('article',Article::count())
+            ->with('event',Event::count())
+            ->with('gallery',Gallery::count())
+            ->with('page',Page::count());
     }
 
     /**

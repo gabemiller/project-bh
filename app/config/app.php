@@ -113,6 +113,8 @@ return array(
         'Intervention\Image\ImageServiceProvider',
         'Lavary\Menu\ServiceProvider',
         'Barryvdh\Elfinder\ElfinderServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+
     ),
     /*
       |--------------------------------------------------------------------------
@@ -174,9 +176,11 @@ return array(
         'URL' => 'Illuminate\Support\Facades\URL',
         'Validator' => 'Illuminate\Support\Facades\Validator',
         'View' => 'Illuminate\Support\Facades\View',
+
         'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
         'Image' => 'Intervention\Image\Facades\Image',
         'Menu' => 'Lavary\Menu\Facade',
+
     ),
 );
