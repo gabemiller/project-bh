@@ -27,7 +27,7 @@
                     <div class="form-group hidden">
                         {{Form::label('parent', 'Szülő menüpont',array('class'=>'col-lg-2 control-label'))}}
                         <div class="col-lg-2">
-                            {{Form::selection('parent', $pages,array('class'=>'form-control'),$page->parent);}} 
+                            {{Form::select('parent', $pages,null,array('class'=>'form-control'),$page->parent);}}
                         </div>
                     </div>
                     <div class="form-group hidden">

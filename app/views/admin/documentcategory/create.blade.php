@@ -1,4 +1,5 @@
 @extends('_backend.master')
+@extends('_backend.master')
 @section('content')
 <section class="content-header">
     <h1>Dokumentum kategóriák</h1>
@@ -26,7 +27,7 @@
                     <div class="form-group">
                         {{Form::label('parent', 'Szülő kategória',array('class'=>'control-label'))}}
                         <div>
-                            {{Form::selection('parent', $categories,array('class'=>'form-control'));}} 
+                            {{Form::select('parent', $categories,null,array('class'=>'form-control'));}}
                         </div>
                     </div>
                     <div class="form-group">
