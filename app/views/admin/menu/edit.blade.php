@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="form-group">
-                            {{Form::label('shows url_modification', 'Szeretnéd módosítani az URL-t?',array('class'=>'col-lg-2 control-label'))}}
+                            {{Form::label('url_modification', 'Szeretnéd módosítani az URL-t?',array('class'=>'col-lg-2 control-label'))}}
                             <div class="col-lg-9">
                                 {{Form::checkbox('url_modification', 'true')}}
                             </div>
