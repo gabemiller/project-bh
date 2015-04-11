@@ -109,7 +109,8 @@ return array(
         'first_name' => 'keresztnév',
         'last_name' => 'vezetéknév',
         'email' => 'email cím',
-        'phone' => 'telefonszám'
+        'phone' => 'telefonszám',
+        'category' => 'kategória'
 
     ),
 
