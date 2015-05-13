@@ -7,7 +7,11 @@
     <div class="article">
         <h1>{{HTML::link($article->getLink(),$article->title)}}</h1>
 
-        <p class="small text-uppercase text-muted"><strong>{{$article->getAuthorName()}}</strong>, {{$article->getCreateDate()}} </p>
+        {{--
+        <p class="small text-uppercase text-muted">
+            <strong>{{$article->getAuthorName()}}</strong>, {{$article->getCreateDate()}}
+        </p>
+        --}}
 
         <div class="article-content">
             {{$article->content}}

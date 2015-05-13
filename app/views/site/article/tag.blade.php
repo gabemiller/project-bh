@@ -8,8 +8,11 @@
         <div class="article list-box">
             <h2>{{HTML::link($article->getLink(),$article->title)}}</h2>
 
+            {{--
             <p class="small text-uppercase text-muted">
-                <strong>{{$article->getAuthorName()}}</strong>, {{$article->getCreateDate()}} </p>
+                <strong>{{$article->getAuthorName()}}</strong>, {{$article->getCreateDate()}}
+            </p>
+            --}}
 
             <p class="text-justify">{{$article->getParragraph()}}</p>
 
