@@ -181,15 +181,16 @@ $(function() {
      * -------------------------------------------------------------------------
      * Kijelölés
      * -------------------------------------------------------------------------
-     * 
-     * 
+     *
+     *
      */
 
     $('#checkAll').on('click', this, function() {
+        var checkBox = $('tbody').find('tr:not(.filtered)').find('input[name=delete]');
         if ($(this).is(':checked')) {
-            $('input[name="delete"]').prop('checked', true);
+            checkBox.prop('checked', true);
         } else {
-            $('input[name="delete"]').prop('checked', false);
+            checkBox.prop('checked', false);
         }
     });
 
@@ -197,15 +198,18 @@ $(function() {
      * -------------------------------------------------------------------------
      * Törlés
      * -------------------------------------------------------------------------
-     * 
-     * 
+     *
+     *
      */
 
 
     $('#deleteButton').on('click', this, function() {
 
         if (confirm('Biztos, hogy törlöd a kijelölt elemeket?')) {
-            $('[name=delete]:checked').each(function() {
+
+            var checkBox = $('tr:not(.filtered)').find('[name=delete]:checked');
+
+            checkBox.each(function() {
                 var $this = $(this);
                 $.ajax({
                     url: $this.data('url'),
@@ -257,9 +261,6 @@ $(function() {
 
         var formAjax = $(this).closest('.form-ajax');
 
-        if ($('#summernote-div').length > 0) {
-            $('#summernote-textarea').html($('#summernote-div').code());
-        }
 
         $.ajax({
             url: formAjax.attr('action'),
