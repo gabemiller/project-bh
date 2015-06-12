@@ -12,7 +12,7 @@
                         <dt>Fax</dt>
                         <dd>+36 48 500-212</dd>
                         <dt>Email</dt>
-                        <dd>{{HTML::mailto('info@banhorvati.hu')}}</dd>
+                        <dd>{{HTML::mailto('banhorvatiph@gmail.com')}}</dd>
                     </dl>
                 </div>
             </div>
@@ -25,7 +25,10 @@
                             <h4>{{HTML::linkRoute('hirek.show',$article->title,array('id'=>$article->id,'title'=>$article->id))}}</h4>
 
                             <p class="small text-muted">
-                                <strong>{{$article->getAuthorName()}}</strong>, {{$article->getCreateDate()}} </p>
+                                <strong>
+                                    {{$article->getAuthorName()}}
+                                </strong>
+                            </p>
                         </div>
                     @endforeach
                 </div>
