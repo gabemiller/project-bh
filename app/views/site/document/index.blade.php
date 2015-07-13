@@ -13,9 +13,6 @@
                     <th>
                         Cím
                     </th>
-                    <th class="table-col-md">
-                        Feltöltés dátuma
-                    </th>
                     <th class="table-col-xs">
                         Művelet
                     </th>
@@ -27,9 +24,6 @@
                     <td>
                         <h4>{{$doc->name}}</h4>
                         <p>{{$doc->description}}</p>
-                    </td>
-                    <td>
-                        {{$doc->created_at}}
                     </td>
                     <td>
                         {{HTML::decode(HTML::link($doc->path,'Letöltés',array('class'=>'btn btn-small btn-tardona-yellow','target'=>'_blank')))}}
