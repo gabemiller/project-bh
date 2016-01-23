@@ -1,2 +1,3 @@
-## Project BH
+## Project-bh
 
+Project home: http://banhorvati.hu
