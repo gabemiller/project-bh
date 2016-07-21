@@ -122,6 +122,8 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'before' => 'use
 
     Route::resource('dokumentum', 'DocumentController');
 
+    Route::resource('nyomtatvany', 'FormController');
+
     Route::resource('dokumentum-kategoria', 'DocumentCategoryController');
 
     Route::resource('menu-kezelo', 'MenuController');
@@ -217,6 +219,11 @@ if (Request::is('admin') || Request::is('admin/*')) {
             ['route' => 'admin.dokumentum.index'])
             ->prepend('<i class="fa fa-angle-double-right "></i> ')
             ->active('admin/dokumentum-kategoria/*');
+
+        $menu->get('média')->add('Nyomtatványok',
+            ['route' => 'admin.nyomtatvany.index'])
+            ->prepend('<i class="fa fa-angle-double-right "></i> ')
+            ->active('admin/nyomtatvany/*');
 
         /**
          * Oldal menüpont
