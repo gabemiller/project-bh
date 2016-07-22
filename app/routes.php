@@ -43,6 +43,17 @@ Route::get('palyazatok', ['uses' => 'Site\PageController@showCompetitions', 'as'
 
 Route::get('dokumentumok/{category?}', ['uses' => 'Site\DocumentController@index', 'as' => 'dokumentumok.index']);
 
+Route::get('akadalymentes/{am}', function ($am) {
+
+    if ($am == 'letrehoz') {
+        $cookie = \Cookie::forever('am', 'true');
+    } else {
+        $cookie = \Cookie::forget('am');
+    }
+
+    return \Redirect::back()->withCookie($cookie);
+});
+
 /**
  * -----------------------------------------------------------------------------
  * Site menu

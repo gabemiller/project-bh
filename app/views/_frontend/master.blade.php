@@ -20,6 +20,9 @@
         {{ HTML::style('css/bootstrap-image-gallery.min.css'); }}
         {{ HTML::style('css/animate.css'); }}
         {{ HTML::style('css/site/divide.css'); }}
+        @if(isset($am)&&!empty($am))
+            {{ HTML::style('css/site/divide.am.min.css') }}
+        @endif
 
     </head>
     <body>
