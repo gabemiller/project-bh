@@ -40,4 +40,42 @@ class DocumentController extends \BaseController
             ->with('categories', DocumentCategory::all(['id','name','slug']));;
     }
 
+    /**
+     *
+     */
+    public function form()
+    {
+        View::share('title', 'Dokumentumok');
+
+        $cat = DocumentCategory::where('slug','=','nyomtatvanyok')->first();
+
+        $doc = Document::whereHas('categories', function ($q) use($cat) {
+            $q->where('documentcategory_id', '=', $cat->id);
+        })->paginate(10);
+
+        $this->layout->content = View::make('site.document.form')
+            ->with('documents', $doc)
+            ->with('categories', DocumentCategory::all(['id','name','slug']));
+    }
+
+    /**
+     *
+     */
+    public function download($form)
+    {
+        View::share('title', 'Dokumentumok');
+
+        $doc = Document::where('name','=',urldecode($form))->first();
+
+        if($doc){
+            return \Response::download(public_path().$doc->path);
+        }
+
+        if(file_exists(public_path().'/documents/'.$form)){
+            return \Response::download(public_path().'/documents/'.$form);
+        }
+
+        \App::abort(404);
+    }
+
 }

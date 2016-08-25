@@ -43,6 +43,10 @@ Route::get('palyazatok', ['uses' => 'Site\PageController@showCompetitions', 'as'
 
 Route::get('dokumentumok/{category?}', ['uses' => 'Site\DocumentController@index', 'as' => 'dokumentumok.index']);
 
+Route::get('nyomtatvanyok', ['uses' => 'Site\DocumentController@form', 'as' => 'nyomtatvanyok.form']);
+
+Route::get('nyomtatvanyok/{form}', ['uses' => 'Site\DocumentController@download', 'as' => 'nyomtatvanyok.download']);
+
 Route::get('akadalymentes/{am}', function ($am) {
 
     if ($am == 'letrehoz') {
