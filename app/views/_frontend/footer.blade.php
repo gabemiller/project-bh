@@ -6,7 +6,7 @@
                     <h3>Elérhetőség</h3>
                     <dl>
                         <dt>Polgármesteri hivatal</dt>
-                        <dd>3642 Bánhorváti, Szabadság út 32.</dd>
+                        <dd>3642 Bánhorváti, Szabadság út 146.</dd>
                         <dt>Telefon</dt>
                         <dd>+36 48 500-211</dd>
                         <dt>Fax</dt>
