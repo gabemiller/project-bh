@@ -43,12 +43,11 @@
                                         <button type="button" class="collapsed btn-menu hidden-md hidden-lg" data-toggle="collapse" data-target="#navCollapse">
                                             <i class="fa fa-bars"></i> Menü
                                         </button>
-
                                         <div class="collapse" id="navCollapse">
                                             <h4>Pályázatok</h4>
-                                            {{HTML::decode(HTML::linkRoute('oldalak.show','<img class="img-responsive" src="/img/gallery/38/1533154094.4542-nagybarca-es-tersegenek.jpg" alt="Infóblokk">',['id'=>84,'title'=>'nagybarca-es-tersegenek-kozossegfejlesztesi-projektje']))}}
-                                            {{$competitionMenu->asUl(array('class'=>'list-unstyled nav-menu-competition'))}}
+                                            {{HTML::decode(HTML::linkRoute('oldalak.show','<img class="img-responsive" src="/img/gallery/40/1589917157.2861-szechenyi-terv-2020.jpg" alt="Infóblokk">',['id'=>84,'title'=>'nagybarca-es-tersegenek-kozossegfejlesztesi-projektje']))}}
                                             <h4>Navigáció</h4>
+                                            {{$competitionMenu->asUl(array('class'=>'list-unstyled nav-menu-competition'))}}
                                             {{$mainMenu->asUl(array('class'=>'list-unstyled nav-menu'))}}
                                         </div>
                                     </nav>
