@@ -45,6 +45,9 @@
                                         </button>
                                         <div class="collapse" id="navCollapse">
                                             <h4>Pályázatok</h4>
+                                            <a href="/img/gallery/41/1600201704.4254-magyar-falu-program.jpg" target="_blank" style="margin-bottom: 10px">
+                                             <img class="img-responsive" src="/img/gallery/41/1600201704.4254-magyar-falu-program.jpg" alt="Magyar Falu Program">
+                                            </a>
                                             {{HTML::decode(HTML::linkRoute('oldalak.show','<img class="img-responsive" src="/img/gallery/40/1589917157.2861-szechenyi-terv-2020.jpg" alt="Infóblokk">',['id'=>84,'title'=>'nagybarca-es-tersegenek-kozossegfejlesztesi-projektje']))}}
                                             <h4>Navigáció</h4>
                                             {{$competitionMenu->asUl(array('class'=>'list-unstyled nav-menu-competition'))}}
