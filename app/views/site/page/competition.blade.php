@@ -18,7 +18,7 @@
                     <tr>
                         <td>
                             {{HTML::linkRoute('oldalak.show',$page->title,array('id'=>$page->id,'slug'=>\Str::slug($page->title)))}}
-                        </td>s
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
