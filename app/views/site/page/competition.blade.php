@@ -11,7 +11,6 @@
                 <thead>
                 <tr>
                     <th>Cím</th>
-                    <th class="table-col-md">Feltöltés dátuma</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -19,10 +18,7 @@
                     <tr>
                         <td>
                             {{HTML::linkRoute('oldalak.show',$page->title,array('id'=>$page->id,'slug'=>\Str::slug($page->title)))}}
-                        </td>
-                        <td>
-                            {{$page->created_at}}
-                        </td>
+                        </td>s
                     </tr>
                 @endforeach
                 </tbody>
