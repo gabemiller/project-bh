@@ -18,7 +18,7 @@ class HomeController extends \BaseController {
     public function index() {
         View::share('title', 'Főoldal');
 
-        $page = Page::findOrFail(8);
+        $page = Page::findOrFail(2);
 
         $this->layout->content = View::make('index')
             ->with('page', $page);
