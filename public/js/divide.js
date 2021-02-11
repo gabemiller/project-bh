@@ -19,6 +19,11 @@ $(document).ready(function() {
            $(this).height((height+20)+'px');
        
     });
-    
+
+    const competitionBtn = document.querySelector('.competition-drop-up > .btn-circle');
+    competitionBtn.addEventListener('click', function (e) {
+        e.preventDefault()
+        this.parentNode.classList.toggle('open');
+    });
 
 });

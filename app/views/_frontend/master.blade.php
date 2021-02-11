@@ -28,6 +28,15 @@
     <body>
         <div id="fb-root"></div>
 
+        <div class="competition-drop-up open">
+            <div class="competition-container">
+
+            </div>
+            <button class="btn-circle">
+                <span></span>
+            </button>
+        </div>
+
         @include('_frontend.lightbox')
         @include('_frontend.header')
         <div class="container">

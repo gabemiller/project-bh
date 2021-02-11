@@ -96,7 +96,7 @@ footer .footer-bottom .footer-logo-link .footer-logo:hover {
     }
 }
 
-.footer-box{
+.footer-box {
     background-color: #ffffff;
     padding: 10px;
     min-height: 315px;
@@ -547,7 +547,7 @@ fieldset[disabled] .btn-tardona-yellow.active {
     box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.15);
 }
 
-.main-shadow-top{
+.main-shadow-top {
     -webkit-box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.15);
     -moz-box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.15);
     box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.15);
@@ -555,19 +555,94 @@ fieldset[disabled] .btn-tardona-yellow.active {
 
 /* Web accessability */
 
-   .btn-am, .btn-am:visited{
-       background: url('../../assets/am.jpg') left top/contain no-repeat yellow;
-       color: #000000;
-       font-size: 16px;
-       text-transform: uppercase;
-       font-weight: bold;
-       padding: 8px 8px 8px 40px;
-       float: right;
-       border: 2px solid #000000;
-       margin: 1px 0;
-   }
+.btn-am, .btn-am:visited {
+    background: url('../../assets/am.jpg') left top/contain no-repeat yellow;
+    color: #000000;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 8px 8px 8px 40px;
+    float: right;
+    border: 2px solid #000000;
+    margin: 1px 0;
+}
 
-.btn-am:hover, .btn-am:active{
+.btn-am:hover, .btn-am:active {
     color: #000000;
     text-decoration: underline;
+}
+
+/* Competition */
+
+.competition-drop-up {
+    position: fixed;
+    bottom: 55px;
+    left: 30px;
+    z-index: 2;
+}
+
+.competition-drop-up > .btn-circle {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    background-color: #005C9F;
+    border: 1px solid #005C9F;
+    transition: background-color .2s ease;
+}
+
+.competition-drop-up > .btn-circle:hover {
+    background-color: #006BB8;
+}
+
+.competition-drop-up > .btn-circle:active {
+    background-color: #00538F;
+}
+
+.competition-drop-up > .btn-circle:focus {
+    outline: 1px dotted #00538F;
+}
+
+.competition-drop-up > .btn-circle > span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: relative;
+    background-color: white;
+    transition: transform .2s ease;
+}
+
+.competition-drop-up > .btn-circle span::before,
+.competition-drop-up > .btn-circle span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+}
+
+.competition-drop-up > .btn-circle  span::before {
+    transition: transform .2s ease;
+    top: -6px;
+}
+
+.competition-drop-up > .btn-circle  span::after {
+    transition: transform .2s ease;
+    bottom: -6px;
+}
+
+.competition-drop-up.open > .btn-circle span {
+    transform: rotate(45deg);
+}
+
+.competition-drop-up.open > .btn-circle span::before {
+    transform: translateY(6px);
+}
+
+.competition-drop-up.open > .btn-circle span::after {
+    transform: translateY(-6px) rotate(90deg);
 }
