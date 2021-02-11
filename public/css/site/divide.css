@@ -585,12 +585,20 @@ fieldset[disabled] .btn-tardona-yellow.active {
     border-radius: 50%;
     width: 32px;
     height: 32px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     padding: 0 6px;
     background-color: #005C9F;
     border: 1px solid #005C9F;
+    -webkit-transition: background-color .2s ease;
+    -o-transition: background-color .2s ease;
     transition: background-color .2s ease;
 }
 
@@ -612,7 +620,11 @@ fieldset[disabled] .btn-tardona-yellow.active {
     height: 2px;
     position: relative;
     background-color: white;
+    -webkit-transition: -webkit-transform .2s ease;
+    transition: -webkit-transform .2s ease;
+    -o-transition: transform .2s ease;
     transition: transform .2s ease;
+    transition: transform .2s ease, -webkit-transform .2s ease;
 }
 
 .competition-drop-up > .btn-circle span::before,
@@ -626,24 +638,38 @@ fieldset[disabled] .btn-tardona-yellow.active {
 }
 
 .competition-drop-up > .btn-circle  span::before {
+    -webkit-transition: -webkit-transform .2s ease;
+    transition: -webkit-transform .2s ease;
+    -o-transition: transform .2s ease;
     transition: transform .2s ease;
+    transition: transform .2s ease, -webkit-transform .2s ease;
     top: -6px;
 }
 
 .competition-drop-up > .btn-circle  span::after {
+    -webkit-transition: -webkit-transform .2s ease;
+    transition: -webkit-transform .2s ease;
+    -o-transition: transform .2s ease;
     transition: transform .2s ease;
+    transition: transform .2s ease, -webkit-transform .2s ease;
     bottom: -6px;
 }
 
 .competition-drop-up.open > .btn-circle span {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
 
 .competition-drop-up.open > .btn-circle span::before {
+    -webkit-transform: translateY(6px);
+    -ms-transform: translateY(6px);
     transform: translateY(6px);
 }
 
 .competition-drop-up.open > .btn-circle span::after {
+    -webkit-transform: translateY(-6px) rotate(90deg);
+    -ms-transform: translateY(-6px) rotate(90deg);
     transform: translateY(-6px) rotate(90deg);
 }
 
@@ -655,12 +681,26 @@ fieldset[disabled] .btn-tardona-yellow.active {
     height: 370px;
     background-color: white;
     border-radius: 15px 15px 15px 0;
+    -webkit-transition: -webkit-transform .6s cubic-bezier(0.11, 1.95, 0.29, 0.22);
+    transition: -webkit-transform .6s cubic-bezier(0.11, 1.95, 0.29, 0.22);
+    -o-transition: transform .6s cubic-bezier(0.11, 1.95, 0.29, 0.22);
     transition: transform .6s cubic-bezier(0.11, 1.95, 0.29, 0.22);
+    transition: transform .6s cubic-bezier(0.11, 1.95, 0.29, 0.22), -webkit-transform .6s cubic-bezier(0.11, 1.95, 0.29, 0.22);
+    -webkit-transform: translateY(calc(-100% - 15px)) scaleY(0);
+    -ms-transform: translateY(calc(-100% - 15px)) scaleY(0);
     transform: translateY(calc(-100% - 15px)) scaleY(0);
+    -webkit-transform-origin: left bottom;
+    -ms-transform-origin: left bottom;
     transform-origin: left bottom;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding: 15px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
     box-shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 }
 
@@ -678,11 +718,17 @@ fieldset[disabled] .btn-tardona-yellow.active {
 
 .competition-drop-up.open > .competition-container {
     pointer-events: initial;
+    -webkit-transform: translateY(calc(-100% - 15px)) scaleY(1);
+    -ms-transform: translateY(calc(-100% - 15px)) scaleY(1);
     transform: translateY(calc(-100% - 15px)) scaleY(1);
 }
 
 .competition-drop-up > .competition-container > a {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
